@@ -28,11 +28,11 @@ const RandomBlock = () => {
       });
 
       // Update the state only if the content is not the default value
-      if (!textBlock) {
+      
         setTextBlock(reactElement);
         setAuthor(randomTextBlock.user.username);
         setSourceUrl(randomTextBlock.source?.url || ''); // Check if source exists before accessing url
-      }
+      
     };
 
     fetchTextBlocks();
