@@ -23,7 +23,7 @@ const RandomBlock = () => {
           if (domNode.type === 'tag' && domNode.name === 'script') {
             return null; // Remove any remaining script tags
           }
-          return [domToReact(domNode)];
+          return domToReact(domNode, { replace: domNode => domNode.attribs && domNode.children && domNode.children.map(child => child.data).join('') });
         },
       });
 
