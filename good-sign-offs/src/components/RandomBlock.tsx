@@ -23,16 +23,13 @@ const RandomBlock = () => {
           if (domNode.type === 'tag' && domNode.name === 'script') {
             return null; // Remove any remaining script tags
           }
-          return domToReact(domNode);
+          return [domToReact(domNode)];
         },
       });
 
-      // Update the state only if the content is not the default value
-      
-        setTextBlock(reactElement);
-        setAuthor(randomTextBlock.user.username);
-        setSourceUrl(randomTextBlock.source?.url || ''); // Check if source exists before accessing url
-      
+      setTextBlock(reactElement);
+      setAuthor(randomTextBlock.user.username);
+      setSourceUrl(randomTextBlock.source?.url || '');
     };
 
     fetchTextBlocks();
@@ -49,6 +46,7 @@ const RandomBlock = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-blue-500 hover:underline"
+            aria-label="Source"
           >
             Source
           </a>
