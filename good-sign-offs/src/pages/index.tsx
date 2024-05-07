@@ -8,7 +8,7 @@ function Home() {
         <title>Good Sign-Offs</title>
         <meta property="og:title" content="Good Sign-Offs" key="title" />
         <meta property="twitter:title" content="Good Sign-Offs"/>
-        <meta name="theme-color" content="#7bd2f7" />
+        <meta name="theme-color" content="#e0f2fe" />
         <meta
           property="description"
           content="A mini experiment powered by are.na"
@@ -26,7 +26,7 @@ function Home() {
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content="og.png"/>
       </Head>
-      <div className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-white-200">
+      <div className="bg-gradient-to-t from-sky-400 to-sky-100">
       <RandomBlock />
       </div>
     </div>
