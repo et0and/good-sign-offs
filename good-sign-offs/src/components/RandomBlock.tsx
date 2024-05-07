@@ -43,7 +43,7 @@ const RandomBlock = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div
-        className="max-w-2xl p-8 bg-white text-2xl font-serif"
+        className="max-w-2xl p-8 text-2xl font-serif"
         dangerouslySetInnerHTML={{ __html: textContent }}
       />
       {author && <div className="mt-4 text-sm text-gray-700">{author}</div>}
