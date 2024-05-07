@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
-import parse, { domToReact, DOMNode } from 'html-react-parser';
+import parse, { domToReact, DOMNode, Element } from 'html-react-parser';
 import React from 'react';
 
 const RandomBlock = () => {
@@ -19,8 +19,13 @@ const RandomBlock = () => {
 
       // Parse the sanitized HTML and convert it to React elements
       const parsedNodes = parse(sanitizedContent);
-      const filteredNodes = parsedNodes.filter((node) => node.type !== 'comment');
+      const filteredNodes = Array.isArray(parsedNodes)
+        ? parsedNodes.filter((node) => node.type !== 'comment')
+        : [parsedNodes];
       const reactNodes = filteredNodes.map((node) => {
+        if (typeof node === 'string') {
+          return node;
+        }
         if (node.type === 'tag' && node.name === 'script') {
           return null; // Remove any remaining script tags
         }
