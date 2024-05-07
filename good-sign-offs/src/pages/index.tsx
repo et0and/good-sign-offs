@@ -8,6 +8,7 @@ function Home() {
         <title>Good Sign-Offs</title>
         <meta property="og:title" content="Good Sign-Offs" key="title" />
         <meta property="twitter:title" content="Good Sign-Offs"/>
+        <meta name="theme-color" content="radial-gradient(at center bottom, rgb(56, 189, 248), rgb(186, 230, 253))" />
         <meta
           property="description"
           content="A mini experiment powered by are.na"
