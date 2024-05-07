@@ -45,7 +45,7 @@ const RandomBlock = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       {isLoading ? (
-        <div>Loading a good sign-off ...</div>
+        <div className="font-serif">Loading a good sign-off ...</div>
       ) : (
         <>
           <div
