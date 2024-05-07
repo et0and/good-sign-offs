@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
-import parse, { domToReact } from 'html-react-parser';
+import parse, { domToReact, DOMNode } from 'html-react-parser';
 import React from 'react';
 
 const RandomBlock = () => {
@@ -23,13 +23,15 @@ const RandomBlock = () => {
           if (domNode.type === 'tag' && domNode.name === 'script') {
             return null; // Remove any remaining script tags
           }
-          const result = domToReact(domNode, {
+          if (domNode.type === 'comment') {
+            return null; // Ignore comment nodes
+          }
+          return domToReact(domNode as DOMNode, {
             replace: (node) =>
               node.attribs && node.children
                 ? node.children.map((child) => child.data).join('')
                 : null,
           });
-          return Array.isArray(result) ? result : [result];
         },
       });
 
