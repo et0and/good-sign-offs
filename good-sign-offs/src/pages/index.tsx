@@ -21,7 +21,9 @@ function Home() {
           content="A mini experiment powered by are.na"
         />
         <meta property="og:url" content="https://good-sign-offs.tom.so" />
-        <meta property="og:image" content="og.png"/>
+        <meta property="og:image" content="og.png" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content="og.png"/>
       </Head>
       <RandomBlock />
     </div>
