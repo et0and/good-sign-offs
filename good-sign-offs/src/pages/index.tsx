@@ -8,7 +8,7 @@ function Home() {
         <title>Good Sign-Offs</title>
         <meta property="og:title" content="Good Sign-Offs" key="title" />
         <meta property="twitter:title" content="Good Sign-Offs"/>
-        <meta name="theme-color" content="#e0f2fe" />
+        <meta name="theme-color" content="#FFECB3" />
         <meta
           property="description"
           content="A mini experiment powered by are.na"
@@ -26,7 +26,7 @@ function Home() {
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content="og.png"/>
       </Head>
-      <div className="bg-gradient-to-t from-sky-400 to-sky-100">
+      <div className="bg-orange-100">
       <RandomBlock />
       </div>
     </div>
