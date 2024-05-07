@@ -18,22 +18,19 @@ const RandomBlock = () => {
       const sanitizedContent = DOMPurify.sanitize(randomTextBlock.content_html);
 
       // Parse the sanitized HTML and convert it to React elements
-      const reactNodes = parse(sanitizedContent, {
-        replace: (domNode) => {
-          if (domNode.type === 'tag' && domNode.name === 'script') {
-            return null; // Remove any remaining script tags
-          }
-          if (domNode.type === 'comment') {
-            return null; // Ignore comment nodes
-          }
-          return domToReact(domNode as DOMNode, {
-            replace: (node) =>
-              node.attribs && node.children
-                ? node.children.map((child) => child.data).join('')
-                : null,
-          });
-        },
-      });
+      const parsedNodes = parse(sanitizedContent);
+      const filteredNodes = parsedNodes.filter((node) => node.type !== 'comment');
+      const reactNodes = filteredNodes.map((node) => {
+        if (node.type === 'tag' && node.name === 'script') {
+          return null; // Remove any remaining script tags
+        }
+        return domToReact(node as DOMNode, {
+          replace: (childNode) =>
+            childNode.attribs && childNode.children
+              ? childNode.children.map((child) => child.data).join('')
+              : null,
+        });
+      }).filter(Boolean);
 
       // Create a single React element from the array of nodes
       const reactElement = React.createElement('div', null, ...reactNodes);
