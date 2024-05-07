@@ -8,7 +8,7 @@ function Home() {
         <title>Good Sign-Offs</title>
         <meta property="og:title" content="Good Sign-Offs" key="title" />
         <meta property="twitter:title" content="Good Sign-Offs"/>
-        <meta name="theme-color" content="#38BDF8" />
+        <meta name="theme-color" content="#7bd2f7" />
         <meta
           property="description"
           content="A mini experiment powered by are.na"
