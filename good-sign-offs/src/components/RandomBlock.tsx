@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import parse, { domToReact } from 'html-react-parser';
+import React from 'react';
 
 const RandomBlock = () => {
   const [textBlock, setTextBlock] = useState<React.ReactElement | null>(null);
@@ -9,8 +10,7 @@ const RandomBlock = () => {
 
   useEffect(() => {
     const fetchTextBlocks = async () => {
-      const channelUrl = 'https://api.are.na/v2/channels/good-sign-offs/contents';
-      const response = await fetch(channelUrl);
+      const response = await fetch('/api/channel');
       const data = await response.json();
       const textBlocks = data.contents.filter((block: any) => block.class === 'Text');
       const randomIndex = Math.floor(Math.random() * textBlocks.length);
@@ -18,7 +18,7 @@ const RandomBlock = () => {
       const sanitizedContent = DOMPurify.sanitize(randomTextBlock.content_html);
 
       // Parse the sanitized HTML and convert it to React elements
-      const reactElement = parse(sanitizedContent, {
+      const reactNodes = parse(sanitizedContent, {
         replace: (domNode) => {
           if (domNode.type === 'tag' && domNode.name === 'script') {
             return null; // Remove any remaining script tags
@@ -26,6 +26,9 @@ const RandomBlock = () => {
           return domToReact(domNode, { replace: domNode => domNode.attribs && domNode.children && domNode.children.map(child => child.data).join('') });
         },
       });
+
+      // Create a single React element from the array of nodes
+      const reactElement = React.createElement('div', null, ...reactNodes);
 
       setTextBlock(reactElement);
       setAuthor(randomTextBlock.user.username);
