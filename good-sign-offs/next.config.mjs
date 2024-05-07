@@ -1,11 +1,18 @@
+const path = '/good-sign-offs';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async rewrites() {
+  basePath: path,
+  trailingSlash: true,
+  
+  async redirects() {
     return [
       {
-        source: '/good-sign-offs',
-        destination: '/',
+        source: '/',
+        destination: path,
+        basePath: false,
+        permanent: true,
       },
     ];
   },
