@@ -15,6 +15,7 @@ const RandomBlock = () => {
   const [textContent, setTextContent] = useState("");
   const [author, setAuthor] = useState("");
   const [sourceUrl, setSourceUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const fetchTextBlocks = async () => {
@@ -32,6 +33,8 @@ const RandomBlock = () => {
         setSourceUrl(randomTextBlock.source?.url || "");
       } catch (error) {
         console.error("Error fetching text blocks:", error);
+      } finally {
+        setIsLoading(false); // Set loading to false after data is fetched
       }
     };
     if (typeof window !== "undefined") {
@@ -41,23 +44,29 @@ const RandomBlock = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <div
-        className="max-w-2xl p-8 text-2xl font-serif"
-        dangerouslySetInnerHTML={{ __html: textContent }}
-      />
-      {author && <div className="mt-4 text-sm text-gray-700">{author}</div>}
-      {sourceUrl && (
-        <div className="mt-2 text-center">
-          <a
-            href={sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-blue-500 hover:underline"
-            aria-label="Source"
-          >
-            Source
-          </a>
-        </div>
+      {isLoading ? (
+        <div>Loading a good sign-off ...</div>
+      ) : (
+        <>
+          <div
+            className="max-w-2xl p-8 text-2xl font-serif"
+            dangerouslySetInnerHTML={{ __html: textContent }}
+          />
+          {author && <div className="mt-4 text-sm text-gray-700">{author}</div>}
+          {sourceUrl && (
+            <div className="mt-2 text-center">
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-blue-500 hover:underline"
+                aria-label="Source"
+              >
+                Source
+              </a>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
