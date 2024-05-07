@@ -25,7 +25,7 @@ function Home() {
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content="og.png"/>
       </Head>
-      <div className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-sky-200">
+      <div className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-white-200">
       <RandomBlock />
       </div>
     </div>
