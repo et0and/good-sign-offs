@@ -4,7 +4,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const channelUrl = 'https://api.are.na/v2/channels/good-sign-offs/contents';
+  const channelUrl = 'https://api.are.na/v2/channels/good-sign-offs/contents?per=2000';
   const response = await fetch(channelUrl);
   const data = await response.json();
 
