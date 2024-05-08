@@ -20,7 +20,7 @@ const RandomBlock = () => {
   useEffect(() => {
     const fetchTextBlocks = async () => {
       try {
-        const response = await fetch("good-sign-offs/api/channel");
+        const response = await fetch("api/channel");
         const data = await response.json();
         const textBlocks = data.contents.filter(
           (block: TextBlock) => block.class === "Text"
